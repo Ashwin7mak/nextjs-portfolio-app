@@ -1,9 +1,9 @@
-import Navbar from "../../components/shared/Navbar";
+import Navbar from "../../../components/shared/Navbar";
 
 const ForumCategories = () => {
 
     return (
-      <>
+      <div className="container">
         <Navbar />
         <div className="container">
           <section className="section-title">
@@ -75,7 +75,7 @@ const ForumCategories = () => {
             </div>
           </section>
         </div>
-      </>
+      </div>
     )
 }
 
