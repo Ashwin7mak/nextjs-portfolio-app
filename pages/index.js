@@ -1,18 +1,17 @@
 import Portfolios from "../pages/portfolios/index";
 import ForumCategories from "./forum/categories/index";
-import Navbar from "../components/shared/Navbar";
-import Hero from "../components/shared/Hero";
+
 
 
 const Home = () => (
-  <div className="portfolio-app">
+  <>
     {/* NAVBAR START */}
-      <Navbar />
+
     {/* NAVBAR ENDS */}
     {/* HERO STARTS */}
-      <Hero />
+
     {/* HERO ENDS */}
-    <div className="container">
+
       {/* HOME PAGE STARTS */}
       <section className="section-title">
         <div className="px-2">
@@ -120,7 +119,6 @@ const Home = () => (
       {/* LOGIN PAGE STARTS */}
 
       {/* LOGIN PAGE ENDS */}
-    </div>
 
     {/* REPLIER STARTS */}
     {/* <div className='reply-controls is-open'> */}
@@ -169,7 +167,7 @@ const Home = () => (
       </div>
     </footer>
     {/* FOOTER ENDS */}
-  </div>
+  </>
 )
 
 export default Home
