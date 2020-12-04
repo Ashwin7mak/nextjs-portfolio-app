@@ -9,14 +9,53 @@ const app = next({ dev });
 
 const handle = app.getRequestHandler();
 
+const data = {
+  portfolios: [
+    {
+      _id: '1k12rak1',
+      lcoation: 'USA',
+      content: 'It was a learning experience',
+      jobTitle: 'Product Manager',
+      experience: 5,
+      isCurrentlyEmployed: false
+    },
+    {
+      _id: '08jad912',
+      location: 'India',
+      content: 'It was an interesting project',
+      jobTitle: 'UX Designer',
+      experience: 3,
+      isCurrentlyEmployed: false
+    },
+    {
+      _id: 'n1ad91j5',
+      location: 'Singapore',
+      content: 'Short-term project',
+      jobTitle: 'Software Engineer',
+      experience: 7,
+      isCurrentlyEmployed: true
+    }
+  ]
+};
+
 app.prepare()
   .then(() => {
     const server = express();
 
     // Construct a schema, using GraphQL schema language
     const schema = buildSchema(`
+      type Portfolio {
+        _id: ID!,
+        title: String,
+        content: String,
+        jobTitle: String,
+        experience: Int,
+        isCurrentlyEmployed: Boolean
+      }
       type Query {
         hello: String
+        portfolio: Portfolio
+        portfolios: [Portfolio]
       }
     `);
 
@@ -25,6 +64,12 @@ app.prepare()
       hello: () => {
         return 'Hello world!';
       },
+      portfolio: () => {
+        return data.portfolios[0];
+      },
+      portfolios: () => {
+        return data.portfolios;
+      }
     };
 
     server.use('/graphql', graphqlHTTP({
