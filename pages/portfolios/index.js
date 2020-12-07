@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import PorfolioCard from '@/components/portfolios/PortfolioCard';
+
 const fetchPortfolios = () => {
   const query = `
     query Portfolios {
@@ -51,22 +53,13 @@ const Portfolios = ({ portfolios }) => {
       </section>
       <section className="pb-5">
         <div className="row">
-          {
-            portfolios.map(e =>
-            <div className="col-md-4" key={e._id}>
-              <div className="card subtle-shadow no-border">
-                <div className="card-body">
-                  <h5 className="card-title">{e.company}</h5>
-                  <h6 className="card-subtitle mb-2 text-muted">{e.jobTitle}</h6>
-                  <p className="card-text fs-2">{e.content}</p>
-                </div>
-                <div className="card-footer no-border">
-                  <small className="text-muted">{e.startDate} - {e.endDate}</small>
-                </div>
-              </div>
+        {
+          portfolios.map(portfolio =>
+            <div className="col-md-4" key={portfolio._id}>
+              <PorfolioCard portfolio={portfolio} />
             </div>
-            )
-          }
+          )
+        }
         </div>
       </section>
     </>
