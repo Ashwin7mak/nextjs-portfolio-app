@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const fetchPortfolioById = (id) => {
   const query = `
-    query Portfolio {
-      portfolio(id: "${id}") {
+    query Portfolio($id: ID) {
+      portfolio(id: $id) {
         _id
         company
         location
@@ -20,7 +20,9 @@ const fetchPortfolioById = (id) => {
 
   const url = 'http://localhost:3000/graphql';
 
-  return axios.post(url, { query })
+  const variables = { id };
+
+  return axios.post(url, { query, variables })
     .then(({data: graph}) => graph.data)
     .then(data => data.portfolio);
 }
@@ -30,7 +32,7 @@ const PortfolioDetail = ({portfolio}) => {
   return (
     <>
     <div className="portfolio-detail">
-    `` <div className="container">
+      <div className="container">
 
         <div className="jumbotron">
           <h1 className="display-3">{portfolio.company}</h1>
